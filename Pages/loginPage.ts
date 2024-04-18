@@ -3,7 +3,8 @@ import { Page } from "@playwright/test";
 export default class LoginPage {
 
     // Constructor definition
-    constructor(public page: Page) {};
+    constructor(public page: Page) {
+    };
 
     // Login with username and password
     async loginWithUsername(username: string, password: string) {
