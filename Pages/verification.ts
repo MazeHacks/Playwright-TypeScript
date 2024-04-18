@@ -32,7 +32,7 @@ export default class Verification {
     // LinkedIn Page Title Verification
     async verifyLinkedInPageTitle() {
 
-        await expect(this.page).toHaveTitle(" Sign Up | LinkedIn ");
+        await expect(this.page).toHaveTitle("Sauce Labs | LinkedIn");
     }
     
 

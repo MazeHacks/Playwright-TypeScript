@@ -50,21 +50,17 @@ const validPassowrd = "secret_sauce";
  /* Twitter Link */
  test('06_05_Twitter Link', async ({page, baseURL}) => {
 
-    // Defining context
-    //const context = browser.newContext();
-    //const page = (await context).newPage();
-
     // Constructing Classes and defining base constants
     const login = new LoginPage(page);
     const productsPage = new ProductsPage(page);
-    const verification = new Verification(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
     await login.loginWithUsername(standardUser, validPassowrd);
 
     // Test Process
-    await productsPage.clickTwitterLink();
+    const newTab = await productsPage.clickTwitterLink();
+    const verification = new Verification(newTab);
 
     // Verification
     await verification.verifyTwitterPageTitle();
@@ -77,14 +73,14 @@ const validPassowrd = "secret_sauce";
     // Constructing Classes and defining base constants
     const login = new LoginPage(page);
     const productsPage = new ProductsPage(page);
-    const verification = new Verification(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
     await login.loginWithUsername(standardUser, validPassowrd);
 
     // Test Process
-    await productsPage.clickFacebookLink();
+    const newTab = await productsPage.clickFacebookLink();
+    const verification = new Verification(newTab);
 
     // Verification
     await verification.verifyFacebookPageTitle();
@@ -97,14 +93,14 @@ const validPassowrd = "secret_sauce";
     // Constructing Classes and defining base constants
     const login = new LoginPage(page);
     const productsPage = new ProductsPage(page);
-    const verification = new Verification(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
     await login.loginWithUsername(standardUser, validPassowrd);
 
     // Test Process
-    await productsPage.clickLinkedInLink();
+    const newTab = await productsPage.clickLinkedInLink();
+    const verification = new Verification(newTab);
 
     // Verification
     await verification.verifyLinkedInPageTitle();

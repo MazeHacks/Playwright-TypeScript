@@ -13,7 +13,7 @@ test('01_01_Successful Login', async ({page, baseURL}) => {
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await verification.verifyPageTitle("Swag Labs");
+    await verification.verifyLoginPageTitle;
     await loginPage.loginWithUsername("standard_user", "secret_sauce");
 
     // Test Process

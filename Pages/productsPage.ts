@@ -25,14 +25,27 @@ export default class ProductsPage {
     }
 
     async clickTwitterLink() {
-        await this.page.click(".social_twitter");
+        const [newtab] = await Promise.all([
+            this.page.waitForEvent("popup"),
+            this.page.click(".social_twitter")
+        ])
+
+        return newtab;
     }
 
     async clickFacebookLink() {
-        await this.page.click(".social_facebook");
-    }
+        const [newtab] = await Promise.all([
+            this.page.waitForEvent("popup"),
+            this.page.click(".social_facebook")
+        ])
+
+        return newtab;    }
 
     async clickLinkedInLink() {
-        await this.page.click(".social_linkedin");
-    }
+        const [newtab] = await Promise.all([
+            this.page.waitForEvent("popup"),
+            this.page.click(".social_linkedin")
+        ])
+
+        return newtab;    }
 }
