@@ -34,7 +34,18 @@ export default class Verification {
 
         await expect(this.page).toHaveTitle("Sauce Labs | LinkedIn");
     }
-    
+
+    // Add to Cart Verification
+    async verifyProductAddedToCart(product: string) {
+
+        await expect(this.page.locator(product)).toBeVisible();
+    }
+
+    // Remove from Cart Verification
+    async verifyProductRemovedFromCart(product: string) {
+
+        await expect(this.page.locator(product)).toHaveCount(0);
+    }
 
     // Text Verification
     async verifyText(locator: string, text: string) {
