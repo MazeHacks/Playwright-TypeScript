@@ -7,11 +7,8 @@ export default class ProductsPage {
 
     // Get Products
     async getProducts() {
-        await Promise.all([
-            this.page.waitForNavigation({waitUntil: "networkidle"}), 
-        ])
-        const products = this.page.$$(".inventory_item");
-        return products;
+
+        return this.page.$$(".inventory_item");
     }
 
     // Add product to Cart

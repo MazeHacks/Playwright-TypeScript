@@ -20,7 +20,7 @@ export default class Verification {
     // Twitter Page Title Verification
     async verifyTwitterPageTitle() {
 
-        await expect(this.page).toHaveTitle("Sauce Labs (@saucelabs) / X");
+        await expect(this.page).toHaveTitle("Profile / X");
     }
 
     // Facebook Page Title Verification
