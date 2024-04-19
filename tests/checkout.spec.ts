@@ -9,7 +9,7 @@ import CartPage from "../Pages/cartPage";
 const standardUser = "standard_user";
 const validPassword = "secret_sauce";
 
-// Product
+// Product Constants
 const productLabel = "#item_4_title_link";
 const productAddBtn = '[data-test="add-to-cart-sauce-labs-backpack"]';
 
@@ -39,8 +39,9 @@ test("04_01_Successful Checkout", async ({page, baseURL}) => {
     // Verification
     await verification.verifyText("[data-test='title']", "Checkout: Overview");
     await verification.verifyProductAddedToCart(productLabel);
+    await page.click("#finish");
+    await verification.verifyText("[data-test='complete-header']", "Thank you for your order!");
 });
-
 
     /* Checkout without First Name */
 test("04_02_Checkout Missing First Name", async ({page, baseURL}) => {
