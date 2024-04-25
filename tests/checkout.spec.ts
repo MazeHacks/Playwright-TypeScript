@@ -2,8 +2,8 @@ import { test } from "@playwright/test";
 
 import LoginPage from "../Pages/loginPage";
 import ProductsPage from "../Pages/productsPage";
-import Verification from "../Pages/verification";
 import CartPage from "../Pages/cartPage";
+import HelpingFunctions from "../Pages/helpingFunctions";
 
 // Login Constants
 const standardUser = "standard_user";
@@ -23,7 +23,7 @@ test("04_01_Successful Checkout", async ({page, baseURL}) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const cartPage = new CartPage(page);
-    const verification = new Verification(page);
+    const helpingFunctions = new HelpingFunctions(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
@@ -37,10 +37,10 @@ test("04_01_Successful Checkout", async ({page, baseURL}) => {
 
 
     // Verification
-    await verification.verifyText("[data-test='title']", "Checkout: Overview");
-    await verification.verifyProductAddedToCart(productLabel);
+    await helpingFunctions.verifyText("[data-test='title']", "Checkout: Overview");
+    await productsPage.verifyProductAddedToCart(productLabel);
     await page.click("#finish");
-    await verification.verifyText("[data-test='complete-header']", "Thank you for your order!");
+    await helpingFunctions.verifyText("[data-test='complete-header']", "Thank you for your order!");
 });
 
     /* Checkout without First Name */
@@ -50,7 +50,7 @@ test("04_02_Checkout Missing First Name", async ({page, baseURL}) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const cartPage = new CartPage(page);
-    const verification = new Verification(page);
+    const helpingFunctions = new HelpingFunctions(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
@@ -64,7 +64,7 @@ test("04_02_Checkout Missing First Name", async ({page, baseURL}) => {
 
 
     // Verification
-    await verification.verifyText(errorMessageLocator, "Error: First Name is required");
+    await helpingFunctions.verifyText(errorMessageLocator, "Error: First Name is required");
 });
 
     /* Checkout without Last Name */
@@ -74,7 +74,7 @@ test("04_03_Checkout Missing Last Name", async ({page, baseURL}) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const cartPage = new CartPage(page);
-    const verification = new Verification(page);
+    const helpingFunctions = new HelpingFunctions(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
@@ -88,7 +88,7 @@ test("04_03_Checkout Missing Last Name", async ({page, baseURL}) => {
 
 
     // Verification
-    await verification.verifyText(errorMessageLocator, "Error: Last Name is required");
+    await helpingFunctions.verifyText(errorMessageLocator, "Error: Last Name is required");
 });
 
     /* Checkout without Postal Code */
@@ -98,7 +98,7 @@ test("04_04_Checkout Missing Postal Code", async ({page, baseURL}) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const cartPage = new CartPage(page);
-    const verification = new Verification(page);
+    const helpingFunctions = new HelpingFunctions(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
@@ -112,7 +112,7 @@ test("04_04_Checkout Missing Postal Code", async ({page, baseURL}) => {
 
 
     // Verification
-    await verification.verifyText(errorMessageLocator, "Error: Postal Code is required");
+    await helpingFunctions.verifyText(errorMessageLocator, "Error: Postal Code is required");
 });
 
     /* Checkout with alphabetic postal code */
@@ -122,7 +122,7 @@ test("04_05_Checkout with Alphabetic Postal Code", async ({page, baseURL}) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const cartPage = new CartPage(page);
-    const verification = new Verification(page);
+    const helpingFunctions = new HelpingFunctions(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
@@ -136,5 +136,5 @@ test("04_05_Checkout with Alphabetic Postal Code", async ({page, baseURL}) => {
 
 
     // Verification
-    await verification.verifyText(errorMessageLocator, "Error");
+    await helpingFunctions.verifyText(errorMessageLocator, "Error");
 });

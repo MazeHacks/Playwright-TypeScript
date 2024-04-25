@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export default class LoginPage {
 
@@ -11,8 +11,12 @@ export default class LoginPage {
 
         await this.page.fill("#user-name", username);
         await this.page.fill("#password", password);
-        await this.page.click("#login-button")
+        await this.page.click("#login-button");
 
     }
 
+    // Login Page Title Verification
+    async verifyLoginPageTitle() {
+        await expect(this.page).toHaveTitle("Swag Labs");
+    }
 }

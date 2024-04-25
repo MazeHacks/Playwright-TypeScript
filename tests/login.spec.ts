@@ -1,11 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import LoginPage from '../Pages/loginPage';
-import Verification from '../Pages/verification';
+import Verification from '../Pages/helpingFunctions';
 
 // Module constants
 const standardUser = "standard_user";
 const validPassowrd = "secret_sauce";
-const pageTitle = "Swag Labs";
 const invalidPassword = "secret";
 const lockedUser = "locked_out_user";
 
@@ -24,7 +23,6 @@ test('01_01_Successful Login', async ({page, baseURL}) => {
 
     // Verification
     await verification.verifyText(".title", "Products");
-
 })
 
         /* Failed Login*/
@@ -44,7 +42,6 @@ test('01_02_Failed Login', async ({page, baseURL}) => {
 
     // Verification
     await verification.verifyText(errorMessageLocator, errorMessage);
-
 })
 
         /* Locked User */
@@ -64,5 +61,4 @@ test('01_03_Locked User', async ({page, baseURL}) => {
 
     // Verification
     await verification.verifyText(errorMessageLocator, errorMessage);
-
 })

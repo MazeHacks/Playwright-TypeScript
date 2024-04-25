@@ -6,9 +6,13 @@ export default class CartPage {
     constructor(public page: Page) {
     };
 
+    // Continue Shopping
+    async continueShopping() {
+        await this.page.click("#continue-shopping");
+    }
+
     // Checkout
     async checkout() {
-
         await this.page.click("#checkout")
     }
 
