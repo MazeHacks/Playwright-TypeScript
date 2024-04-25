@@ -11,7 +11,7 @@ export default defineConfig({
 
   use: {
     baseURL: 'https://www.saucedemo.com/',
-    trace: 'on',
+    trace: 'off',
   },
 
   projects: [
