@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import ProductsPage from '../Pages/productsPage';
-import Verification from '../Pages/verification';
+import Verification from '../Pages/helpingFunctions';
 import LoginPage from '../Pages/loginPage';
 
         /* Check all Items are presented */
