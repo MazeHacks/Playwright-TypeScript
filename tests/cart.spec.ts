@@ -4,16 +4,10 @@ import LoginPage from "../Pages/loginPage";
 import ProductsPage from "../Pages/productsPage";
 import CartPage from "../Pages/cartPage";
 import BurgerMenu from "../Pages/burgerMenu";
+import * as Constants from '../Pages/constants';
 
-const standardUser = "standard_user";
-const validPassword = "secret_sauce";
-
-const firstProductLabel = "#item_4_title_link";
-const firstProductAddBtn = '[data-test="add-to-cart-sauce-labs-backpack"]';
-const firstProductRemoveBtn= "#remove-sauce-labs-backpack";
-const secondProductAddBtn = "#add-to-cart-sauce-labs-bike-light";
-const secondProductLabel = "#item_0_title_link";
-
+// Module constants
+const constants = Constants;
 
         /* Adding Product to Cart */
 test("03_01_Add To Cart", async ({page, baseURL}) => {
@@ -24,15 +18,15 @@ test("03_01_Add To Cart", async ({page, baseURL}) => {
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(standardUser, validPassword);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
-    await productsPage.addToCart(firstProductAddBtn);
+    await productsPage.addToCart(constants.firstProductAddBtn);
     await productsPage.navigateToCart();
 
 
     // Verification
-    await productsPage.verifyProductAddedToCart(firstProductLabel);
+    await productsPage.verifyProductAddedToCart(constants.firstProductLabel);
 });
 
         /* Check Cart After Changing the Order */
@@ -45,20 +39,20 @@ test("03_02_Check Cart after Changing Order", async ({page, baseURL}) => {
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(standardUser, validPassword);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
-    await productsPage.addToCart(firstProductAddBtn);
+    await productsPage.addToCart(constants.firstProductAddBtn);
     await productsPage.navigateToCart();
-    await productsPage.verifyProductAddedToCart(firstProductLabel); // Verify first Product added
+    await productsPage.verifyProductAddedToCart(constants.firstProductLabel); // Verify first Product added
     await cartPage.continueShopping();
-    await productsPage.removeFromCart(firstProductRemoveBtn);
-    await productsPage.addToCart(secondProductAddBtn);    
+    await productsPage.removeFromCart(constants.firstProductRemoveBtn);
+    await productsPage.addToCart(constants.secondProductAddBtn);    
 
     // Verification
     await productsPage.navigateToCart();
-    await productsPage.verifyProductAddedToCart(secondProductLabel); // Verify second Product added
-    await productsPage.verifyProductRemovedFromCart(firstProductLabel); // Verify first Product Removed
+    await productsPage.verifyProductAddedToCart(constants.secondProductLabel); // Verify second Product added
+    await productsPage.verifyProductRemovedFromCart(constants.firstProductLabel); // Verify first Product Removed
 
 });
 
@@ -73,21 +67,21 @@ test("03_03_Check Cart after Log out", async ({page, baseURL}) => {
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(standardUser, validPassword);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
-    await productsPage.addToCart(firstProductAddBtn);
+    await productsPage.addToCart(constants.firstProductAddBtn);
     await productsPage.navigateToCart();
-    await productsPage.verifyProductAddedToCart(firstProductLabel); // Verify first Product added
+    await productsPage.verifyProductAddedToCart(constants.firstProductLabel); // Verify first Product added
     await cartPage.continueShopping();
-    await productsPage.removeFromCart(firstProductRemoveBtn);
-    await productsPage.addToCart(secondProductAddBtn);
+    await productsPage.removeFromCart(constants.firstProductRemoveBtn);
+    await productsPage.addToCart(constants.secondProductAddBtn);
     await burgerMenu.logout();
 
     // Verification
-    await loginPage.loginWithUsername(standardUser, validPassword);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
     await productsPage.navigateToCart();
-    await productsPage.verifyProductAddedToCart(secondProductLabel); // Verify second Product added
-    await productsPage.verifyProductRemovedFromCart(firstProductLabel); // Verify first Product Removed
+    await productsPage.verifyProductAddedToCart(constants.secondProductLabel); // Verify second Product added
+    await productsPage.verifyProductRemovedFromCart(constants.firstProductLabel); // Verify first Product Removed
 
 });
