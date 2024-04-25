@@ -1,21 +1,21 @@
 import { test } from '@playwright/test';
 import LoginPage from '../Pages/loginPage';
 import SocialMediaLinks from '../Pages/socialMediaLinks';
+import * as Constants from '../Pages/constants';
 
-// Module Constants
-const standardUser = "standard_user";
-const validPassowrd = "secret_sauce";
+// Module constants
+const constants = Constants;
 
  /* Twitter Link */
  test('06_05_Twitter Link', async ({page, baseURL}) => {
 
     // Constructing Classes and defining base constants
-    const login = new LoginPage(page);
-    var socialMediaLinksPage = new SocialMediaLinks(page);
+    const loginPage = new LoginPage(page);
+    let socialMediaLinksPage = new SocialMediaLinks(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await login.loginWithUsername(standardUser, validPassowrd);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickTwitterLink();
@@ -30,12 +30,12 @@ const validPassowrd = "secret_sauce";
  test('06_06_Facebook Link', async ({page, baseURL}) => {
 
     // Constructing Classes and defining base constants
-    const login = new LoginPage(page);
-    var socialMediaLinksPage = new SocialMediaLinks(page);
+    const loginPage = new LoginPage(page);
+    let socialMediaLinksPage = new SocialMediaLinks(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await login.loginWithUsername(standardUser, validPassowrd);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickFacebookLink();
@@ -50,12 +50,12 @@ const validPassowrd = "secret_sauce";
  test('06_07_LinkedIn Link', async ({page, baseURL}) => {
 
     // Constructing Classes and defining base constants
-    const login = new LoginPage(page);
-    var socialMediaLinksPage = new SocialMediaLinks(page);
+    const loginPage = new LoginPage(page);
+    let socialMediaLinksPage = new SocialMediaLinks(page);
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await login.loginWithUsername(standardUser, validPassowrd);
+    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickLinkedInLink();
