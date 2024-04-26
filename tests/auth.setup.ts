@@ -5,7 +5,6 @@ const standardUserFile = 'playwright/.auth/standardUser.json';
 setup('authenticate as standard user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
   await page.goto('https://www.saucedemo.com/');
-  await page.pause();
   await page.fill("#user-name", "standard_user");
   await page.fill("#password", "secret_sauce");
   await page.click("#login-button");

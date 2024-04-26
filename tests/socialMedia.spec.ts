@@ -1,10 +1,7 @@
 import { test } from '@playwright/test';
 import LoginPage from '../Pages/loginPage';
 import SocialMediaLinks from '../Pages/socialMediaLinks';
-import * as Constants from '../Pages/constants';
-
-// Module constants
-const constants = Constants;
+import testData from '../Pages/testdata.json';
 
  /* Twitter Link */
  test('06_05_Twitter Link', async ({page, baseURL}) => {
@@ -15,7 +12,7 @@ const constants = Constants;
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
+    await loginPage.loginWithUsername(testData.loginPage.standardUser, testData.loginPage.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickTwitterLink();
@@ -35,7 +32,7 @@ const constants = Constants;
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
+    await loginPage.loginWithUsername(testData.loginPage.standardUser, testData.loginPage.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickFacebookLink();
@@ -55,7 +52,7 @@ const constants = Constants;
 
     // Pre-Conditions
     await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
+    await loginPage.loginWithUsername(testData.loginPage.standardUser, testData.loginPage.globalPassword);
 
     // Test Process
     const newTab = await socialMediaLinksPage.clickLinkedInLink();
