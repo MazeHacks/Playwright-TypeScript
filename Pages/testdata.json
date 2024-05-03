@@ -1,4 +1,12 @@
 {
+    "authFilePath":{
+        "standardUser": "playwright/.auth/standardUser.json",
+        "problemUser": "playwright/.auth/problemUser.json",
+        "performanceGlitchUser": "playwright/.auth/performanceGlitchUser.json",
+        "errorUser": "playwright/.auth/errorUser.json",
+        "visualUser": "playwright/.auth/visualUser.json"
+    },
+
     "loginPage": {
         "globalPassword": "secret_sauce",
         "invalidPassword": "invalid",

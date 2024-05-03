@@ -4,7 +4,12 @@ export default class LoginPage {
 
     // Constructor definition
     constructor(public page: Page) {
+        //this.goto();
     };
+
+    /*async goto(){
+        await this.page.goto('/');
+    }*/
 
     // Login with username and password
     async loginWithUsername(username: string, password: string) {

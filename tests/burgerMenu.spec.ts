@@ -1,42 +1,37 @@
 import { test } from '@playwright/test';
 import LoginPage from '../Pages/loginPage';
-import BurgerMenu from '../Pages/burgerMenu';
+import ProductsPage from '../Pages/productsPage';
 import testData from '../Pages/testdata.json';
 
 /* About Link */
-test('06_02_About Link', async ({ page, baseURL }) => {
+test.describe(() => {
+    test.use({ storageState: testData.authFilePath.standardUser });
 
-    // Constructing Classes and defining base constants
-    const loginPage = new LoginPage(page);
-    const burgerMenuPage = new BurgerMenu(page);
+    test('06_02_About Link', async ({ page }) => {
 
-    // Pre-Conditions
-    await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(testData.loginPage.standardUser, testData.loginPage.globalPassword);
+        // Constructing Classes
+        const productsPage = new ProductsPage(page);
 
-    // Test Process
-    await burgerMenuPage.clickAboutLink();
+        // Test Process
+        await productsPage.clickAboutLink();
 
-    // Verification
-    await burgerMenuPage.verifyAboutLinkPageTitle();
+        // Verification
+        await productsPage.verifyAboutLinkPageTitle();
 
-})
+    })
 
-/* Logout */
-test('06_03_Logout Link', async ({ page, baseURL }) => {
+    /* Logout */
+    test('06_03_Logout Link', async ({ page }) => {
 
-    // Constructing Classes and defining base constants
-    const loginPage = new LoginPage(page);
-    const burgerMenuPage = new BurgerMenu(page);
+        // Constructing Classes
+        const loginPage = new LoginPage(page);
+        const productsPage = new ProductsPage(page);
 
-    // Pre-Conditions
-    await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(testData.loginPage.standardUser, testData.loginPage.globalPassword);
+        // Test Process
+        await productsPage.logout();
 
-    // Test Process
-    await burgerMenuPage.logout();
+        // Verification
+        await loginPage.verifyLoginPageTitle();
 
-    // Verification
-    await loginPage.verifyLoginPageTitle();
-
+    })
 })

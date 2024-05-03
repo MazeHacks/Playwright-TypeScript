@@ -12,6 +12,8 @@
   "scripts": {
     "ui": "npx playwright test --ui",
     "test": "npx playwright test",
+    "show-report": "npx playwright show-report",
+    "test:workers": "npx playwright test --workers",
     "lint": "npx eslint .",
     "prepare": "husky"
   }
