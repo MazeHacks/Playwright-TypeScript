@@ -1,0 +1,43 @@
+{
+    "authFilePath":{
+        "standardUser": "playwright/.auth/standardUser.json",
+        "problemUser": "playwright/.auth/problemUser.json",
+        "performanceGlitchUser": "playwright/.auth/performanceGlitchUser.json",
+        "errorUser": "playwright/.auth/errorUser.json",
+        "visualUser": "playwright/.auth/visualUser.json"
+    },
+
+    "loginPage": {
+        "globalPassword": "secret_sauce",
+        "invalidPassword": "invalid",
+        "standardUser": "standard_user",
+        "lockedoutUser": "locked_out_user",
+        "problemUser": "problem_user",
+        "performanceGlitchUser": "performance_glitch_user",
+        "errorUser": "error_user",
+        "visualUser": "visual_user",
+        "errorMessage": {
+            "locator": ".error-message-container.error h3",
+            "lockedoutUser": "Epic sadface: Sorry, this user has been locked out.",
+            "failedLogin": "Epic sadface: Username and password do not match any user in this service"
+        }
+    },
+
+    "productsPage": {
+        "backpack": {
+            "label": "#item_4_title_link",
+            "add": "[data-test='add-to-cart-sauce-labs-backpack']",
+            "remove": "#remove-sauce-labs-backpack"
+        },
+        "bikeLight": {
+            "label": "#item_0_title_link",
+            "add": "#add-to-cart-sauce-labs-bike-light"
+        }
+    },
+
+    "checkoutPage": {
+        "errorMessage": {
+            "locator": "[data-test='error']"
+        }
+    }
+}

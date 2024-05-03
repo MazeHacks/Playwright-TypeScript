@@ -1,50 +1,37 @@
 import { test, expect } from '@playwright/test';
 import ProductsPage from '../Pages/productsPage';
-import Verification from '../Pages/helpingFunctions';
-import LoginPage from '../Pages/loginPage';
-import * as Constants from '../Pages/constants';
+import HelpingFunctions from '../Pages/helpingFunctions';
+import testData from '../Pages/testdata.json';
 
-// Module constants
-const constants = Constants;
+test.describe(() => {
+    test.use({ storageState: testData.authFilePath.standardUser });
 
-        /* Check all Items are presented */
-test('02_01_Check All Items', async ({page, baseURL}) => {
+    /* Check all Items are presented */
+    test('02_01_Check All Items', async ({ page }) => {
 
-    // Constructing Classes and defining base constants
-    const loginPage = new LoginPage(page);
-    const productsPage = new ProductsPage(page);
-    const verification = new Verification(page);
+        // Constructing Classes
+        const productsPage = new ProductsPage(page);
 
-    // Pre-Conditions
-    await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
+        // Test Process
+        const productsList = await productsPage.getProducts();
 
-    // Test Process
-    const productsList = await productsPage.getProducts();
+        // Verification
+        expect(productsList.length).toEqual(6); //Verify number of products
+    });
 
-    // Verification
-    await verification.verifyText(".title", "Products");
-    expect(productsList.length).toEqual(6); //Verify number of products
+    /* Check product information */
+    test.skip('02_02_Check Product Information', async ({ page }) => {
+
+        // Constructing Classes
+        const productsPage = new ProductsPage(page);
+        const helpingFunctions = new HelpingFunctions(page);
+
+        // Test Process
+        await expect(productsPage.getProducts).toEqual(6); //Verify number of products
+
+
+        // Verification
+        await helpingFunctions.verifyText(".title", "Products");
+
+    });
 })
-
-        /* Check product information */
-test.skip('02_02_Check Product Information', async ({page, baseURL}) => {
-
-    // Constructing Classes and defining base constants
-    const loginPage = new LoginPage(page);
-    const productsPage = new ProductsPage(page);
-    const verification = new Verification(page);
-
-    // Pre-Conditions
-    await page.goto(`${baseURL}`);
-    await loginPage.loginWithUsername(constants.standardUser, constants.globalPassword);
-
-    // Test Process
-    await expect(productsPage.getProducts).toEqual(6); //Verify number of products
-
-
-    // Verification
-    await verification.verifyText(".title", "Products");
-
-})
-

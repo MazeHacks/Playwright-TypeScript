@@ -1,11 +1,11 @@
 import { test as setup, expect } from '@playwright/test';
+import testData from '../Pages/testdata.json';
 
-const standardUserFile = 'playwright/.auth/standardUser.json';
+const standardUserFile = testData.authFilePath.standardUser;
 
 setup('authenticate as standard user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
   await page.goto('https://www.saucedemo.com/');
-  await page.pause();
   await page.fill("#user-name", "standard_user");
   await page.fill("#password", "secret_sauce");
   await page.click("#login-button");
@@ -22,21 +22,7 @@ setup('authenticate as standard user', async ({ page }) => {
   await page.context().storageState({ path: standardUserFile });
 });
 
-const lockedUserFile = 'playwright/.auth/lockedUser.json';
-
-setup('authenticate as locked-out user', async ({ page }) => {
-  // Perform authentication steps. Replace these actions with your own.
-  await page.goto('https://www.saucedemo.com/');
-  await page.fill("#user-name", "locked_out_user");
-  await page.fill("#password", "secret_sauce");
-  await page.click("#login-button")
-
-  // End of authentication steps.
-
-  await page.context().storageState({ path: lockedUserFile });
-});
-
-const problemUserFile = 'playwright/.auth/problemUser.json';
+const problemUserFile = testData.authFilePath.problemUser;
 
 setup('authenticate as problem user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -57,7 +43,7 @@ setup('authenticate as problem user', async ({ page }) => {
   await page.context().storageState({ path: problemUserFile });
 });
 
-const performanceGlitchUserFile = 'playwright/.auth/performanceGlitchUser.json';
+const performanceGlitchUserFile = testData.authFilePath.performanceGlitchUser;
 
 setup('authenticate as performance glitch user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -78,7 +64,7 @@ setup('authenticate as performance glitch user', async ({ page }) => {
   await page.context().storageState({ path: performanceGlitchUserFile });
 });
 
-const errorUserFile = 'playwright/.auth/errorUser.json';
+const errorUserFile = testData.authFilePath.errorUser;
 
 setup('authenticate as error user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -99,7 +85,7 @@ setup('authenticate as error user', async ({ page }) => {
   await page.context().storageState({ path: errorUserFile });
 });
 
-const visualUserFile = 'playwright/.auth/visualUser.json';
+const visualUserFile = testData.authFilePath.visualUser;
 
 setup('authenticate as visual user', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -119,4 +105,3 @@ setup('authenticate as visual user', async ({ page }) => {
 
   await page.context().storageState({ path: visualUserFile });
 });
-
